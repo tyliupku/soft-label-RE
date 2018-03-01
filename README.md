@@ -18,10 +18,10 @@ Much effort has been made in reducing the influence of noisy sentences within th
 including methods based on at-least-one assumption and attention mechanisms over instances. 
 
 ##  Bag-level Mislabeling
-As shown in the figure above, due to the absence of (Jan Eliasson, Sweden)(Jan Eliasson is a Swedish diplomat.) from the Nationality relation in the KB,the entity pair is mislabeled as NA.
+As shown in the figure above, due to the absence of (Jan Eliasson, Sweden)(Jan Eliasson is a Swedish diplomat.) from the *Nationality* relation in the KB,the entity pair is mislabeled as NA.
 
-Actually, no matter how we design the attention weight calculation of the sentences in that bag, the bag would be a noisy instance during training.
-So we try to solve the problem from a different point of view. Since the bag-level DS label can be wrong, we design a soft-label adjustment on the bag-level DS label to correct the ill-labeled cases.
+Actually, no matter how we design the weight calculation of the sentences (in that bag) for bag representation, the bag would be a noisy instance during training.
+So we try to solve the problem from a different point of view. Since the bag-level DS label can be mislabeled, we design a soft-label adjustment on the bag-level DS label to correct the ill-labeled cases.
 
 # Installation
 Although our model can be trained on a CPU, using GPU can greatly accelerate the speed. So we strongly recommended using GPUs to train the model.
@@ -47,7 +47,7 @@ tf.app.flags.DEFINE_boolean("use_pre_train_model", False,'use pre-trained model 
 tf.app.flags.DEFINE_boolean("use_soft_label", False,'use soft label or not')
 tf.app.flags.DEFINE_string("load_model_name", 'pretrain/model.ckpt-3300','the path of pre-trained model without soft-label')
 ```
-We provide two pre-trained models for ONE and ATT, respectively. The pre-trained models can be downloaded via [Google Drive](https://drive.google.com/file/d/1Wo9vw2hd8NY6XRe1djkXdLySqcv8B0cG/view?usp=sharing) or [Baidu Yunpan](https://pan.baidu.com/s/1sm6OVnR).
+We provide two pre-trained models for ONE and ATT configurations, respectively. The pre-trained models can be downloaded via [Google Drive](https://drive.google.com/file/d/1Wo9vw2hd8NY6XRe1djkXdLySqcv8B0cG/view?usp=sharing) or [Baidu Yunpan](https://pan.baidu.com/s/1sm6OVnR).
 
 Please unzip the ```pretrain.zip``` in the ```soft-label-RE``` directory.
 
@@ -62,7 +62,7 @@ tf.app.flags.DEFINE_boolean("use_pre_train_model", True,'use pre-trained model o
 tf.app.flags.DEFINE_string("load_model_name", 'pretrain/att/model.ckpt-3600','the path of pre-trained model without soft-label')
 ```
 ## Train
-You can choose ATT (selective attention) or ONE (at-least-one) model as the bag representation by setting the ```one_or_att``` to ```att``` or ```one```.
+You can choose ATT (selective attention) or ONE (at-least-one) configuration as the bag representation by setting the ```one_or_att``` to ```att``` or ```one```, respectively.
 ```
 tf.app.flags.DEFINE_string("one_or_att",'one','at-least-one or selective attention model')
 ```
