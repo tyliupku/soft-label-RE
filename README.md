@@ -14,11 +14,12 @@ Distant supervision automatically generates training examples by aligning entity
 The automatic labeling by KB inevitably accompanies with wrong labels because the relations of entity pairs might be missing from KBs or mislabeled.
 Multi-instances learning (MIL) is proposed to combat the noise. The method divides the training set into multiple bags of entity pairs (shown in the figure above) and labels the bags with the relations of entity pairs in the KB (**bag-level DS label**).
 Each bag consists of sentences mentioning both head and tail entities.
+
 Much effort has been made in reducing the influence of noisy sentences within the bag,
 including methods based on at-least-one assumption and attention mechanisms over instances. 
 
 ##  Bag-level Mislabeling
-As shown in the figure above, due to the absence of (Jan Eliasson, Sweden)(Jan Eliasson is a Swedish diplomat.) from the *Nationality* relation in the KB,the entity pair is mislabeled as NA.
+As shown in the figure above, due to the absence of (*Jan Eliasson*, *Sweden*)(*Jan Eliasson* is a Swedish diplomat.) from the *Nationality* relation in the KB,the entity pair is mislabeled as NA.
 
 Actually, no matter how we design the weight calculation of the sentences (in that bag) for bag representation, the bag would be a noisy instance during training.
 So we try to solve the problem from a different point of view. Since the bag-level DS label can be mislabeled, we design a soft-label adjustment on the bag-level DS label to correct the ill-labeled cases.
