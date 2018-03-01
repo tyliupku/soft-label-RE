@@ -13,6 +13,7 @@ class model(object):
     def __init__(self, pad_len, num_rels, word_vectors, window_size, num_filters, embedding_size, pos_embedding, dropout, batch_num, joint_p, l2_reg=0.0):
         self.input = tf.placeholder(tf.int32, [None, pad_len], name="input")
         self.preds = tf.placeholder(tf.int32, [None, num_rels], name="preds")
+        self.num_filters = num_filters
         self.mask1 = tf.placeholder(tf.float32, [None, pad_len - window_size + 1, self.num_filters], name="mask_before")
         self.mask2 = tf.placeholder(tf.float32, [None, pad_len - window_size + 1, self.num_filters], name="mask_between")
         self.mask3 = tf.placeholder(tf.float32, [None, pad_len - window_size + 1, self.num_filters], name="mask_after")
