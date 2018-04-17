@@ -66,6 +66,7 @@ class model(object):
             l2_loss += tf.nn.l2_loss(W)
             l2_loss += tf.nn.l2_loss(b)
 
+            # the implementation of Lin et al 2016 comes from https://github.com/thunlp/TensorFlow-NRE/blob/master/network.py
             sen_a = tf.get_variable("attention_A", [3*self.num_filters], initializer=tf.contrib.layers.xavier_initializer())
             sen_q = tf.get_variable("query", [3*self.num_filters, 1], initializer=tf.contrib.layers.xavier_initializer())
             sen_r = []
